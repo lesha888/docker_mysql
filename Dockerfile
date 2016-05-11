@@ -6,7 +6,10 @@ RUN ln -s /usr/include/apr-1.0 /usr/include/apr-1 && \
 cd /usr/local/src/ && \
 unzip -qq master.zip && \
 cd /usr/local/src/mysql2redis-master && \
-make &&  make install 
+sed -i 's/_PASSWORD_JXi6G3AL/"$REDIS_PASS"/g' lib_mysqludf_redis.c && \
+make &&  make install && \
+cd /usr/local/src/ && \
+rm /usr/local/src/mysql2redis-master
 
 #COPY conf.d /etc/mysql/conf.d
 #RUN	echo '!includedir /etc/mysql/conf.d/' > /etc/mysql/my.cnf
