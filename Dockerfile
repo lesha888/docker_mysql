@@ -1,9 +1,12 @@
 FROM percona:5.6.29
 
+
+RUN  apt-get update && apt-get install -y libjemalloc-dev libhiredis-dev libapr1-dev libaprutil1-dev  gcc make   libmysqlclient-dev unzip
+
 ADD https://github.com/lesha888/mysql2redis/archive/master.zip /usr/local/src/
 
-RUN  apt-get update && apt-get install -y libjemalloc-dev libhiredis-dev libapr1-dev libaprutil1-dev  gcc make   libmysqlclient-dev  && \
-ln -s /usr/include/apr-1.0 /usr/include/apr-1 && \
+RUN ln -s /usr/include/apr-1.0 /usr/include/apr-1 && \
+unzip -qq master.zip && \
 cd /usr/local/src/mysql2redis-master && \
 make &&  make install 
 
