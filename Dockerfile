@@ -1,6 +1,6 @@
 FROM percona:5.6.29
 
-COPY dawnbreaks_mysql2redis.git /usr/local/src/dawnbreaks_mysql2redis.git
+ADD https://github.com/dawnbreaks/mysql2redis.git /usr/local/src/dawnbreaks_mysql2redis.git
 
 RUN  apt-get update && apt-get install -y libjemalloc-dev libhiredis-dev libapr1-dev libaprutil1-dev  gcc make   libmysqlclient-dev && \
 ln -s /usr/include/apr-1.0 /usr/include/apr-1 && \
